@@ -1,0 +1,25 @@
+<h1>タスク登録</h1>
+<% if @task.errors.any? %>
+  <p><b><font color="red">【エラー内容】</font></b></p>
+  <% @task.errors.full_messages.each do |message| %>
+    <li><font color="red"><%= message %></font></li>
+  <% end %>
+  
+<% end %>
+
+<%= form_with model: @task, local: true do |form| %>
+  <p>
+    タイトル<br>
+    <%= form.text_field :title %>
+  </p>
+  <p>
+    内容<br>
+    <%= form.text_area :body %>
+  </p>
+
+  <%= form.submit "Update Task" %>
+<% end %>
+
+<p>
+  <%= link_to "詳細に戻る", task_path(@task) %>
+</p>
